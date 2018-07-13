@@ -1,0 +1,26 @@
+<?php 
+
+$sql = "SELECT * FROM utilizatori";
+
+require_once('dbConnect.php');
+
+$r = mysqli_query($con,$sql);
+
+$result = array();
+
+while($row = mysqli_fetch_array($r)){
+    array_push($result,array(
+        'id_utilizator'=>$row['id_utilizator'],
+        'nume_utilizator'=>$row['nume_utilizator'],
+        'parola'=>$row['parola'],
+        'e-mail'=>$row['e-mail'],
+        'admin'=>$row['admin'],
+        'activ'=>$row['activ']
+    ));
+}
+
+echo json_encode(array('result'=>$result));
+
+mysqli_close($con);
+
+/
